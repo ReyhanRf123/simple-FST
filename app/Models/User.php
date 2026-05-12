@@ -29,4 +29,18 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+
+    // Tambahkan di dalam class User
+    public function complaints()
+    {
+        // Relasi: Satu user memiliki banyak pengaduan
+        return $this->hasMany(Complaint::class);
+    }
+
+    public function statusLogs()
+    {
+        // Relasi: Satu admin bisa mencatat banyak log perubahan status
+        return $this->hasMany(ComplaintStatusLog::class, 'admin_id');
+    }
 }
