@@ -26,6 +26,8 @@ return new class extends Migration
             
             // Foto dari Admin (Bukti Perbaikan) 
             $table->string('resolved_image')->nullable(); 
+
+            $table->text('catatan_teknisi')->nullable();
             
             $table->timestamps();
         });

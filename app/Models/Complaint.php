@@ -8,7 +8,7 @@ class Complaint extends Model
 {
     protected $fillable = [
         'user_id', 'facility_id', 'location', 'description', 
-        'severity_level', 'priority_score', 'status', 'image', 'resolved_image'
+        'severity_level', 'priority_score', 'status', 'image', 'resolved_image','catatan_teknisi'
     ];
 
     // Relasi ke User (Pelapor)

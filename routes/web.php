@@ -18,6 +18,7 @@ Route::view('profile', 'profile')
 // Rute khusus untuk Pelapor (Mahasiswa & Dosen)
 Route::middleware(['auth', 'role:mahasiswa,dosen'])->group(function () {
     Route::get('/dashboard', [ComplaintController::class, 'index'])->name('dashboard');
+    Route::get('/complaints/create', [ComplaintController::class, 'create'])->name('complaints.create');
     Route::post('/complaints', [ComplaintController::class, 'store'])->name('complaints.store');
 });
 

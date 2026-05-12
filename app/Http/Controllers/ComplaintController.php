@@ -2,12 +2,40 @@
 namespace App\Http\Controllers;
 
 use App\Models\Complaint;
+use App\Models\Facility;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth; // Menambahkan Facade Auth
 use Illuminate\Support\Facades\Storage;
 
 class ComplaintController extends Controller
 {
+    public function index()
+{
+    $userId = Auth::id(); // Menggunakan Facade Auth sesuai permintaan Anda
+
+    // 1. Ambil statistik ringkasan milik user
+    $stats = [
+        'total' => Complaint::where('user_id', $userId)->count(),
+        'processed' => Complaint::where('user_id', $userId)->where('status', 'diproses')->count(),
+        'completed' => Complaint::where('user_id', $userId)->where('status', 'selesai')->count(),
+    ];
+
+    // 2. Ambil riwayat pengaduan terbaru milik user
+    $complaints = Complaint::with('facility')
+        ->where('user_id', $userId)
+        ->latest()
+        ->paginate(5);
+
+    return view('dashboard', compact('stats', 'complaints'));
+}
+
+    public function create()
+        {
+            // Mengambil semua data fasilitas untuk ditampilkan di pilihan (dropdown)
+            $facilities = Facility::all();
+            
+            return view('complaints.create', compact('facilities'));
+        }
     /**
      * Menangani pengiriman laporan baru oleh Mahasiswa/Dosen
      */

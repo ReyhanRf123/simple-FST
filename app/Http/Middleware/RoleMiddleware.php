@@ -14,14 +14,23 @@ class RoleMiddleware
      *
      * @param  Closure(Request): (Response)  $next
      */
-    public function handle(Request $request, Closure $next, ...$roles)
+    public function handle(Request $request, Closure $next, ...$roles): Response
     {
-        // Cek apakah user sudah login dan apakah rolenya sesuai dengan parameter
+        // 1. Cek apakah role user yang login sesuai dengan yang diizinkan di Route
         if (Auth::check() && in_array(Auth::user()->role, $roles)) {
             return $next($request);
         }
 
-        // Jika tidak punya akses, arahkan kembali ke dashboard masing-masing atau login
-        return redirect('/dashboard')->with('error', 'Anda tidak memiliki akses ke halaman tersebut.');
+        // 2. Jika tidak sesuai, lempar user ke tempat yang benar
+        if (Auth::check()) {
+            if (Auth::user()->role === 'admin') {
+                return redirect()->route('admin.dashboard');
+            }
+            return redirect()->route('dashboard'); // Untuk mahasiswa & dosen
+        }
+
+        // 3. Jika belum login sama sekali
+        return redirect('/login');
+    }
 }
-}
+
