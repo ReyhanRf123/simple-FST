@@ -16,7 +16,11 @@
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
-            <livewire:layout.navigation />
+            {{-- <livewire:layout.navigation /> --}}
+
+            @if(Auth::user()->role !== 'admin')
+                <livewire:layout.navigation />
+            @endif
 
             <!-- Page Heading -->
             @if (isset($header))

@@ -48,7 +48,7 @@ new #[Layout('layouts.guest')] class extends Component
             <div class="relative z-10">
                 <div class="flex items-center gap-2 mb-16">
                     <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path></svg>
-                    <span class="text-xl font-semibold tracking-wider">Universitas</span>
+                    <span class="text-xl font-semibold tracking-wider">UIN Syarif Hidayatullah Jakarta</span>
                 </div>
 
                 <h1 class="text-5xl font-serif font-bold leading-tight mb-6">
@@ -75,7 +75,7 @@ new #[Layout('layouts.guest')] class extends Component
 
                 <form wire:submit="login" class="space-y-6">
                     <div>
-                        <label for="email" class="block text-sm font-medium text-gray-700">Username atau Email</label>
+                        <label for="email" class="block text-sm font-medium text-gray-700">Email Universitas</label>
                         <input wire:model="form.email" id="email" type="email" required autofocus autocomplete="username" 
                             class="mt-1 block w-full border-0 border-b-2 border-gray-300 bg-transparent focus:border-[#064e3b] focus:ring-0 px-0 py-2 transition-colors">
                         <x-input-error :messages="$errors->get('form.email')" class="mt-2" />
