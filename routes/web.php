@@ -1,5 +1,5 @@
 <?php
-
+use Livewire\Volt\Volt;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ComplaintController;
 use Illuminate\Support\Facades\Route;
@@ -36,6 +36,8 @@ Route::post('/logout', function (Request $request) {
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::patch('/complaints/{id}/status', [ComplaintController::class, 'updateStatus'])->name('complaints.updateStatus');
+    Volt::route('/admin/facilities', 'admin.facilities')->name('admin.facilities');
+    Volt::route('/admin/reports', 'admin.reports')->name('admin.reports');
 });
 
 

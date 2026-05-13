@@ -75,7 +75,7 @@ class ComplaintController extends Controller
             'image' => $imagePath,
         ]);
 
-        return redirect()->back()->with('success', 'Laporan berhasil dikirim!');
+        return redirect()->to('/login')->with('success', 'Laporan berhasil dikirim!');
     }
 
     /**
