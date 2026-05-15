@@ -71,6 +71,10 @@
                                 </div>
                             </form>
                         </div>
+
+                        <div class="w-full px-6 pb-4">
+                            <livewire:complaint-comments :complaint="$complaint" :key="'admin-comment-'.$complaint->id" />
+                        </div>
                         
                     </div>
                 @endforeach

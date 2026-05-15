@@ -44,4 +44,9 @@ class Complaint extends Model
 
         return $skorFasilitas * $skorDampak;
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class)->latest(); // latest() agar komentar terbaru ada di bawah/atas
+    }
 }

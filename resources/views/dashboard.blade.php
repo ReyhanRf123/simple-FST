@@ -152,6 +152,8 @@
                                 @endif
                             </div>
 
+                            <livewire:complaint-comments :complaint="$complaint" :key="'comment-'.$complaint->id" />
+
                         </div>
                     </div>
                 @empty
